@@ -5,10 +5,30 @@ window.onload = function () {
     if (xhr.status == 200) {
       const movies = JSON.parse(xhr.responseText);
       for (const movie of movies) {
-        /* Task 1.3. Add your code from exercise 1 here 
-           and include a non-functional 'Edit' button
-           to pass this test */
+      const article = document.createElement("article")
+      article.id = movie.imdbID
+
+      const title = document.createElement("h2")
+      title.textContent = movie.Title
+
+      const year = document.createElement("p")
+      year.textContent = "Released: " + movie.Released
+
+      const button = document.createElement("button")
+      button.textContent = "Edit"
+
+      // 👉 Navigation zur edit Seite
+      button.onclick = function () {
+        location.href = "edit.html?imdbID=" + movie.imdbID
       }
+
+      // alles zusammenbauen
+      article.appendChild(title)
+      article.appendChild(year)
+      article.appendChild(button)
+
+      bodyElement.appendChild(article)
+            }
 
     } else {
       bodyElement.append(
